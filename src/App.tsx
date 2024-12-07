@@ -23,6 +23,7 @@ import io from 'socket.io-client'
 // 산회를 선포합니다.`.split('\n')
 
 function App() {
+  const [connected, setConnected] = useState<boolean | null>(null)
   const [messages, setMessages] = useState<string[]>([])
   const [socket] = useState(() => io('wss://smi.webcast.go.kr/10'))
 
@@ -32,8 +33,12 @@ function App() {
   }, [])
 
   useEffect(() => {
+    socket.on('connect', () => setConnected(true))
+    socket.on('disconnect', () => setConnected(false))
     socket.on('receive message', onMessage)
     return () => {
+      socket.off('connect')
+      socket.off('disconnect')
       socket.off('receive message')
     }
   }, [socket])
@@ -43,6 +48,10 @@ function App() {
   //     setTimeout(() => onMessage(message), index * 1000)
   //   })
   // }, [onMessage])
+
+  if (!messages.length) {
+    return <div>{connected === null ? '연결 중...' : connected === true ? '연결됨' : '연결 끊김'}</div>
+  }
 
   return (
     <ul>
