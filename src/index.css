@@ -6,12 +6,12 @@
   -webkit-text-stroke: 2.5px black;
   font-size: 50px;
   font-weight: 800;
+  word-break: keep-all;
 }
 
 body {
   margin: 0;
   display: flex;
-  min-width: 320px;
   min-height: 100vh;
   overflow: hidden;
 }
