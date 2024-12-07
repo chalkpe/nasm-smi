@@ -1,0 +1,26 @@
+:root {
+  font-family: Pretendard, sans-serif;
+  line-height: 1.5;
+
+  color: white;
+  -webkit-text-stroke: 2.5px black;
+  font-size: 50px;
+  font-weight: 800;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
